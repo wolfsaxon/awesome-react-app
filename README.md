@@ -18,4 +18,4 @@ Example React app that combines a bunch of useful things:
 # Notes
 
 - To tell server to not wait for async (ajax) requests: [http://localhost:3000/?renderAsyncData=false](http://localhost:3000/?renderAsyncData=false)
-- To skip WebpackDevServer (which gives us automatic bundling and hot reloading): [http://localhost:8080](http://localhost:8080). If you skip WebpackDevServer by running on port 8080 you must manually bundle assets by running: "webpack --config webpack.prod.config.js". When running through WebpackDevServer the bundle.js file is never actually created, it's just served directly from memory.
+- To skip WebpackDevServer (which gives us automatic bundling and hot loading): [http://localhost:8080](http://localhost:8080). If you skip WebpackDevServer by running on port 8080 you must manually bundle assets by running: "webpack --config webpack.prod.config.js". When running through WebpackDevServer the bundle.js file is never actually created, it's just served directly from memory.
