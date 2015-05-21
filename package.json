@@ -1,0 +1,31 @@
+{
+  "name": "webpacktest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "entry.js",
+  "dependencies": {
+    "babel": "^5.4.3",
+    "body-parser": "^1.4.3",
+    "compression": "^1.4.4",
+    "express": "^4.4.5",
+    "fibers": "^1.0.5",
+    "immutable": "^3.7.3",
+    "json-server": "^0.7.8",
+    "marked": "^0.3.3",
+    "node-libs-browser": "^0.5.0",
+    "react": "^0.13.3",
+    "react-async": "^2.1.0",
+    "superagent": "^1.2.0",
+    "webpack": "^1.9.7"
+  },
+  "devDependencies": {
+    "jsx-loader": "^0.13.2",
+    "react-hot-loader": "^1.2.7",
+    "webpack": "^1.9.7",
+    "webpack-dev-server": "^1.8.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  }
+}
