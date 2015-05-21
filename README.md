@@ -7,3 +7,9 @@ Example React app that combines a bunch of useful things:
 - WebpackDevServer with hot loading so we can view code changes live in browser without a page refresh.
 - [Radium](https://github.com/FormidableLabs/radium) for specifying style within components. No more stylesheets.
 - Simple json database for prototyping (powered by [json-server](https://github.com/typicode/json-server)).
+
+
+# Install
+
+- npm install
+- rename db.empty.json to db.json
