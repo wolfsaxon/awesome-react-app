@@ -1,4 +1,4 @@
-# awesome-react-app
+# Awesome React App
 
 Example React app that combines a bunch of useful things:
 
