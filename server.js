@@ -8,11 +8,12 @@ var config = require('./webpack.config');
 var React = require('react');
 var ReactAsync = require('react-async');
 
-
 require("babel/register"); // So that we can require jsx
 
 var LayoutComponent = require('./scripts/Layout.jsx');
 var AppComponent = require('./scripts/App.jsx');
+
+
 
 
 // ************************************ //
@@ -65,7 +66,6 @@ api
 
 var app = express();
 
-
 // Pre-render react app + fetch async data
 // Waits until callback passed from getInitialStateAsync() to async success handler is called before returning page
 app.get('/', function(req, res){
@@ -106,10 +106,8 @@ app.get('/', function(req, res){
      	 
 });
 
-
-
 app
 	.use(compression())
 	.use('/', express.static(path.join(__dirname, 'public')))
-	.listen(8080);
+	.listen( process.env.PORT || 8080);
 
