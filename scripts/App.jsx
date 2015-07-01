@@ -1,42 +1,102 @@
-var CommentBox = require('./CommentBox.jsx');
 var React = require('react');
 var Radium = require('radium');
+var Request = require('superagent');
 var Style = Radium.Style;
+
+var Gear = require('./Gear.jsx');
 
 var App = React.createClass({
 
+	getInitialState: function(){
+		return {
+			gear: []
+		}
+	},
+
+	_displayGear: function(){
+		
+		Request
+			.get("http://localhost:3001/gear")
+			.end(function(err, res){
+				var data = res.body;
+
+				// Custom code here
+				this.setState({
+					gear : data
+				});
+
+				console.log('Data from server: ');
+				console.log(data);
+				
+			}.bind(this));
+
+	},
+
+	_displayAccountButton: function(give_login){
+		var signed_in = "Sign out";
+		var signed_out = 'Sign in';
+
+		if  (give_login) {
+			var login = " " + signed_in;
+		}else{
+			var login = sign_in;
+		}
+		return login;
+	},
+
+	_getName: function(give_last_name){
+		// Fancy code to get name from database ...
+		var first_name = 'Jake';
+		var last_name = 'Saxon';
+
+		if (give_last_name) {
+			var name = first_name + ' ' + last_name;
+		}else{
+			var name = first_name;
+		}
+
+		return name;
+	},
+
+	componentDidMount: function(){
+		this._displayGear();
+	},
+
 	render: function() {
+
+		var name = this._getName(false);
+
+		var navBarStyle = {
+			backgroundColor : '#efefef',
+			borderBottom : '1px solid #ccc',
+			padding: '20px',
+			marginBottom: '20px',
+			fontSize: '32px',
+			borderRadius: '10px',
+			fontFamily: 'helvetica'
+		};
+
+		var nameStyle = {
+			color: 'red',
+		}
+
     	return (
 			<div>
+				<div style={navBarStyle}>
+					<div style={nameStyle}>
+						{name}
+					</div>
+				</div>
 
-				<CommentBox
-					url="http://localhost:3001/comments"
-					pollInterval={2000} />
+				<div>
+					{ this.state.gear.length > 0 &&
+						<Gear gearData={this.state.gear}></Gear>
+					}
+				</div>
 
-				<Style rules={[
-				  {
-				    body: {
-				      background: '#fff',
-				      fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-				      fontSize: '15px',
-				      lineHeight: 1.7,
-				      margin: 0,
-				      padding: '30px'
-				    }
-				  },
-				  {
-				    a: {
-				      color: '#4183c4',
-				      textDecoration: 'none'
-				    }
-				  },
-				  {
-				    'a:hover': {
-				      color: 'green',
-				      textDecoration: 'underline'
-				    }
-				  }
-				]} />
+				<div>
+					
+				</div>
 
 			</div>
 		)

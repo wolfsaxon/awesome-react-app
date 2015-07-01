@@ -70,39 +70,43 @@ var app = express();
 // Waits until callback passed from getInitialStateAsync() to async success handler is called before returning page
 app.get('/', function(req, res){
 
-  var renderAsyncData = (req.query.renderAsyncData === "false" ? false : true);
+  //var renderAsyncData = (req.query.renderAsyncData === "false" ? false : true);
+  var renderAsyncData = false;
+  var preRender = false;
 
-  if (renderAsyncData){
+  if (preRender){
+    if (renderAsyncData){
 
-	  ReactAsync.renderToStringAsync(
-			React.createElement(AppComponent, {}),
-	  		function(err, markup){  
+  	  ReactAsync.renderToStringAsync(
+  			React.createElement(AppComponent, {}),
+  	  		function(err, markup){  
 
-				var html = React.renderToStaticMarkup(
-					React.createElement(LayoutComponent, {
-						title: 'Test Title',
-	    			markup: markup
-	    		})
-				);
+  				var html = React.renderToStaticMarkup(
+  					React.createElement(LayoutComponent, {
+  						title: 'Test Title',
+  	    			markup: markup
+  	    		})
+  				);
 
-	  		res.send(html); 
-	   	}
-	  );
+  	  		res.send(html); 
+  	   	}
+  	  );
 
-   }else{
+     }else{
 
-   	// Pre-render react app, but no async (ajax) data is fetched
-    var html = React.renderToStaticMarkup(
-    	React.createElement(LayoutComponent, {
-    		title: 'Test Title',
-	        markup: React.renderToString(
-	        	React.createElement(AppComponent, {})
-	        )
-      })
-    );
+     	// Pre-render react app, but no async (ajax) data is fetched
+      var html = React.renderToStaticMarkup(
+      	React.createElement(LayoutComponent, {
+      		title: 'Test Title',
+  	        markup: React.renderToString(
+  	        	React.createElement(AppComponent, {})
+  	        )
+        })
+      );
 
-    res.send(html);
-   } 
+      res.send(html);
+     } 
+  }
      	 
 });
 
